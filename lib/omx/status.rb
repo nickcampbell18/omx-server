@@ -59,7 +59,7 @@ module Omx
         def status_command
           # The [/] excludes self matches http://serverfault.com/q/367921
           #'12:32 /usr/bin/omxplayer.bin --adev hdmi "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4" < /tmp/etc'
-          `ps ax -o etime,args | grep [/]usr/bin/omxplayer.bin`
+          `pgrep -lf "omxplayer.bin" | grep [/]usr/bin/omxplayer.bin`
         end
 
     end
