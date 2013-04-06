@@ -32,6 +32,7 @@ EM.run {
       begin
         duration = FFMPEG::Movie.new(filename).new.duration
         CACHE.set Base64.encode64(filename), duration#file.duration
+        puts "Setting duration for #{filename} with #{duration}"
         duration
       rescue Exception
         1.0

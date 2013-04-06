@@ -55,9 +55,6 @@ module Omx
         # The [..] excludes self matches http://serverfault.com/q/367921
         #'12:32 /usr/bin/omxplayer.bin --adev hdmi "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4" < /tmp/etc'
         # pgrep is much faster than ps, and sed removes the top line
-        puts "This is the command"
-        puts `pgrep "[o]mxplayer.bin"`
-        puts `pgrep "[o]mxplayer.bin" | xargs ps -o etime,args p`
         `pgrep "[o]mxplayer.bin" | xargs ps -o etime,args p | sed 1d`
       end
 
