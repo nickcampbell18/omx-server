@@ -9,13 +9,7 @@ CACHE = Dalli::Client.new('127.0.0.1:11211')
 
 EM.run {
 
-  @controller = Omx::Controller.new %w{
-    /media/zeus/download/Family.Guy.S01E05.NoTv.Shit.mp4
-    /media/zeus/videos/Community.S04E07.HDTV.x264-LOL.mp4
-    /media/zeus/download/Family.Guy.S01E08.NoTv.Shit.mp4
-    /media/zeus/videos/Community.S04E09.HDTV.x264-LOL.mp4
-    /media/zeus/download/Family.Guy.S01E05.NoTv.Shit.mp4
-    Community.S04E07.HDTV.x264-LOL.mp4}
+  @controller = Omx::Controller.new
 
   serv = EM::WebSocket.run(host: '0.0.0.0', port: ENV['SOCKET_PORT']) do |server|
 
@@ -32,11 +26,9 @@ EM.run {
     end
 
     calculate_file_length = proc {
-      filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
-      duration = 1900
-      #filename = Omx::Status.filename
-      #file = FFMPEG::Movie.new(filename).new
-      #puts "File: #{file}"
+      #filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
+      filename = Omx::Status.filename
+      duration = FFMPEG::Movie.new(filename).new.duration
       CACHE.set Base64.encode64(filename), duration#file.duration
       duration
     }

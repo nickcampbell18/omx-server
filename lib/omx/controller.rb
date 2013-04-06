@@ -51,7 +51,9 @@ module Omx
     end
 
     def play_next_if_needed
-      {'play' => @q.shift} if @q.any? && rand(10)==3# && !Omx::Status.reload!.playing?
+      if @q.any? && !Omx::Status.reload!.playing?
+        Omx::Player.open @q.shift, {:audio_out => @output_mode}
+      end
     end
 
   end
