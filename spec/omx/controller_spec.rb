@@ -31,7 +31,7 @@ describe Omx::Controller do
   end
 
   it 'returns a json response' do
-    Omx::Status.expects(:to_h).returns({'abc' => 'def'})
+    Omx::Status.any_instance.expects(:to_h).returns({'abc' => 'def'})
     res = @c.as_json
     res['queue'].should == @c.q
     res['output_mode'].should == @c.output_mode

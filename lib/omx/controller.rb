@@ -19,7 +19,7 @@ module Omx
       {
         'queue' => @q,
         'output_mode' => @output_mode,
-        'now_playing' => Omx::Status.to_h
+        'now_playing' => Omx::Status.new.to_h
       }
     end
 
