@@ -26,11 +26,16 @@ EM.run {
     end
 
     calculate_file_length = proc {
+      sleep 3
       #filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
       filename = Omx::Status.reload!.filename
-      duration = FFMPEG::Movie.new(filename).new.duration
-      CACHE.set Base64.encode64(filename), duration#file.duration
-      duration
+      begin
+        duration = FFMPEG::Movie.new(filename).new.duration
+        CACHE.set Base64.encode64(filename), duration#file.duration
+        duration
+      rescue Exception
+        1.0
+      end
     }
 
     EM.add_periodic_timer(1) do
