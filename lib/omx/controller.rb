@@ -31,9 +31,9 @@ module Omx
       end
 
       # Run commands on the player itself
-#      if @player.respond_to? opts['action'].to_s
-#        return if @player.send opts['action']
-#      end
+      if @player.respond_to? opts['action'].to_s
+        return if @player.send opts['action']
+      end
 
       # Finally, try and run it directly from the array
       if @q.respond_to? opts['action'].to_s

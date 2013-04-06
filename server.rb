@@ -30,9 +30,6 @@ EM.run {
       #filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
       filename = Omx::Status.new.filename
       begin
-        puts "**** FILENAME: #{filename}"
-        mov = FFMPEG::Movie.new(filename)
-        puts "Obj: #{mov.inspect}"
         duration = FFMPEG::Movie.new(filename).duration
         CACHE.set Base64.encode64(filename), duration#file.duration
         puts "Setting duration for #{filename} with #{duration}"
