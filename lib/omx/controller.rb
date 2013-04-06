@@ -12,7 +12,7 @@ module Omx
     def initialize(queue=[], opts={})
       @q = queue
       @output_mode = opts[:output_mode] || 'hdmi'
-      @player = opts[:player]
+      @player = opts[:player] || Omx::Player.new
     end
 
     def as_json
