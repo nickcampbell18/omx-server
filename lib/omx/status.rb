@@ -37,11 +37,12 @@ module Omx
     end
 
     def percentage
+      return 0 if file_length == 0.0
       ((running_time / file_length) * 100).round(2)
     end
 
     def file_length
-      CACHE.get(Base64.encode64(filename)).to_f || 1.0
+      @len ||= CACHE.get(Base64.encode64(filename)).to_f
     end
 
     private
