@@ -13,7 +13,7 @@ describe Omx::Status do
     end
 
     it 'should gather the time' do
-      @status.running_time.should == '12:43'
+      @status.running_time.should == 763
     end
 
     it 'should gather the filename' do
