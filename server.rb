@@ -28,7 +28,7 @@ EM.run {
     calculate_file_length = proc {
       sleep 3
       #filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
-      filename = Omx::Status.reload!.filename
+      filename = Omx::Status.new.filename
       begin
         duration = FFMPEG::Movie.new(filename).new.duration
         CACHE.set Base64.encode64(filename), duration#file.duration
