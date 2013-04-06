@@ -12,7 +12,7 @@ module Omx
       end
 
       def running_time
-        now_playing[0]
+        ps_time_in_secs now_playing[0]
       end
 
       def audio_out
@@ -43,11 +43,11 @@ module Omx
       end
 
       def percentage
-        ps_time_in_secs(running_time) / file_length
+        ((running_time / file_length) * 100).round(2)
       end
 
       def file_length
-        CACHE.get Base64.encode64(filename) || 1.0
+        CACHE.get(Base64.encode64(filename)).to_f || 1.0
       end
 
       private

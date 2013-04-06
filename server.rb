@@ -32,7 +32,6 @@ EM.run {
     end
 
     calculate_file_length = proc {
-      puts "Calculating file length...."
       filename = "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4"
       duration = 1900
       #filename = Omx::Status.filename
