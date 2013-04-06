@@ -57,9 +57,10 @@ module Omx
         end
 
         def status_command
-          # The [/] excludes self matches http://serverfault.com/q/367921
+          # The [..] excludes self matches http://serverfault.com/q/367921
           #'12:32 /usr/bin/omxplayer.bin --adev hdmi "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4" < /tmp/etc'
-          `pgrep -lf "omxplayer.bin" | grep [/]usr/bin/omxplayer.bin`
+          # pgrep is much faster than ps, and sed removes the top line
+          `pgrep "[o]mxplayer.bin" | xargs ps -o etime,args p | sed 1d`
         end
 
     end
