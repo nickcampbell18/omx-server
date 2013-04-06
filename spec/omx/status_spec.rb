@@ -9,7 +9,7 @@ describe Omx::Status do
   describe 'matching the params' do
 
     before :each do
-      @status.reload!.stubs(:status_command).returns "12:43 /usr/bin/omxplayer.bin --adev hdmi \"file.mp4\" < /tmp/omxpipe"
+      @status.reload!.stubs(:status_command).returns "12:43 /usr/bin/omxplayer.bin --adev hdmi --pos 0 \"file.mp4\" < /tmp/omxpipe"
     end
 
     it 'should gather the time' do

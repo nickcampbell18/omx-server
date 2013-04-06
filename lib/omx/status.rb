@@ -53,7 +53,7 @@ module Omx
       private
 
         def status_pattern
-          /([\d:.]+) \S*omxplayer\S* --adev (\S+).*("\S+") < \S+/
+          /([\d:.]+) \S*omxplayer\S* --adev (\S+) --pos \d+ ("?\S+"?)/
         end
 
         def status_command
