@@ -20,7 +20,7 @@ module Omx
       end
 
       def filename
-        now_playing[2].gsub /"/, ''
+        now_playing[2].to_s.gsub /"/, ''
       end
 
       def playing?
