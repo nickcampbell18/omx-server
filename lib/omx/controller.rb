@@ -37,7 +37,7 @@ module Omx
 
       # Finally, try and run it directly from the array
       if @q.respond_to? opts['action'].to_s
-        return if @q.send opts['action'], opts['filename']
+        return if @q.send opts['action'], opts['filename'] && @q.compact!
       end
 
     end
