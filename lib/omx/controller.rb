@@ -52,7 +52,7 @@ module Omx
 
     def play_next_if_needed
       if @q.any? && !Omx::Status.reload!.playing?
-        Omx::Player.new.open @q.shift, {:audio_out => @output_mode}
+        Omx::Player.new.open {filename: @q.shift, audio_out: @output_mode}
       end
     end
 
