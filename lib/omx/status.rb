@@ -54,8 +54,10 @@ module Omx
       def status_command
         # The [..] excludes self matches http://serverfault.com/q/367921
         #'12:32 /usr/bin/omxplayer.bin --adev hdmi "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4" < /tmp/etc'
+        # process_ids is a multiline list of pids
+        pids = `pgrep "[o]mxplayer.bin"`
         # pgrep is much faster than ps, and sed removes the top line
-        `pgrep "[o]mxplayer.bin" | xargs ps -o etime,args p | sed 1d`
+        pids.blank? ? '' : `echo '#{pids}' | xargs ps -o etime,args p | sed 1d`
       end
 
   end
