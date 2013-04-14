@@ -57,7 +57,7 @@ module Omx
         # process_ids is a multiline list of pids
         pids = `pgrep "[o]mxplayer.bin"`
         # pgrep is much faster than ps, and sed removes the top line
-        pids.blank? ? '' : `echo '#{pids}' | xargs ps -o etime,args p | sed 1d`
+        pids.empty? ? '' : `echo '#{pids}' | xargs ps -o etime,args p | sed 1d`
       end
 
   end
