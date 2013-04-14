@@ -13,6 +13,19 @@ module Omx
       @q = queue
       @output_mode = opts[:output_mode] || 'hdmi'
       @player = opts[:player] || Omx::Player.new
+
+      @q.instance_eval {
+        alias :orig_append :<<
+
+        def <<(obj)
+          orig_append parse_stream_type(obj)
+        end
+
+        def parse_stream_type(url)
+          return Omx::Stream::Youtube.url_from(url) if url =~ /youtube.com/
+          url
+        end
+      }
     end
 
     def as_json

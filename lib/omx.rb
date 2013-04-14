@@ -4,3 +4,6 @@ end
 %w[ keyboard_shortcuts time_calculator player status controller].each do |file|
   require_relative "omx/#{file}"
 end
+%w[ youtube].each do |stream|
+  require_relative "omx/stream/#{stream}"
+end
