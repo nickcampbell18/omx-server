@@ -17,9 +17,9 @@ EM.run {
 
     server.onmessage do |msg|
       deliver.call begin
-        @controller.react_to Oj.strict_load msg
-        puts @controller.as_json
-        @controller.as_json
+        res = @controller.react_to Oj.strict_load msg
+        # res might return some results to the client
+        res.nil? ? @controller.as_json : res
       rescue Exception => e
         {'error' => e.message}
       end

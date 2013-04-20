@@ -40,7 +40,7 @@ module Omx
 
       # Try and run the action on this controller first.
       if respond_to? opts['action'].to_s
-        return if send opts['action'], opts['option']
+        return send opts['action'], opts['option']
       end
 
       # Run commands on the player itself
@@ -61,6 +61,10 @@ module Omx
 
     def change_output(mode)
       {'mode' => "#{@output_mode = mode}"}
+    end
+
+    def search(file)
+      {'results' => Omx::Search.new.run(file)}
     end
 
     def play_next_if_needed
