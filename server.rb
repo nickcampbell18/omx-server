@@ -28,6 +28,7 @@ EM.run {
     calculate_file_length = proc {
       sleep 3 # allows the omxplayer instance to launch
       filename = Omx::Status.new.filename
+      puts "Calculating file length for #{filename}"
       begin
         duration = filename.empty? ? nil : FFMPEG::Movie.new(filename).duration
         if duration && filename
@@ -40,7 +41,6 @@ EM.run {
 
     EM.add_periodic_timer(1) do
       EM.defer calculate_file_length if @controller.play_next_if_needed
-      puts @controller.as_json
       deliver.call @controller.as_json
     end
 
