@@ -10,7 +10,7 @@ module Omx
 
     def open(opts={})
       opts = default_options.merge(opts)
-      system unix_command_with(opts)
+      safe_execute unix_command_with(opts)
       start
     end
 
@@ -28,11 +28,11 @@ module Omx
       end
 
       def mkfifo
-        system "mkfifo #{PIPE}" unless File.exists?(PIPE)
+        safe_execute "mkfifo #{PIPE}" unless File.exists?(PIPE)
       end
 
       def send_to_pipe(command)
-        system "echo -n #{command} > #{PIPE} &"
+        safe_execute "echo -n #{command} > #{PIPE} &"
       end
 
       def default_options
@@ -40,6 +40,12 @@ module Omx
           audio_out: 'hdmi',
           start_pos: 0,
         }
+      end
+
+      def safe_execute(command)
+        fork do
+          exec command
+        end
       end
 
   end
