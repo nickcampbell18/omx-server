@@ -13,7 +13,7 @@ module Omx
     private
 
       def locate(string)
-        return ['/some/filename.mp4']
+        # return ['/some/filename.mp4']
         `locate #{string}`.split /\n/
       end
 

@@ -40,6 +40,7 @@ EM.run {
 
     EM.add_periodic_timer(1) do
       EM.defer calculate_file_length if @controller.play_next_if_needed
+      puts @controller.as_json
       deliver.call @controller.as_json
     end
 
