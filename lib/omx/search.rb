@@ -18,7 +18,7 @@ module Omx
       end
 
       def tokenize(str)
-        str.split.map {|t| t.tr '^A-Za-z0-9.', ''}
+        str.split.map {|t| t.tr '^A-Za-z0-9.\\-', ''}
       end
 
       def glob(arr)
