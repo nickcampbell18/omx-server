@@ -48,12 +48,12 @@ module Omx
     private
 
       def status_pattern
-        /([\d:.]+) \S*omxplayer\S* --adev (\S+) --pos \d+ ("?\S+"?)/
+        /([\d:.]+) \S*omxplayer\S* --adev (\S+) --pos \d+ ("?.*"?)/
       end
 
       def status_command
         # The [..] excludes self matches http://serverfault.com/q/367921
-        #'12:32 /usr/bin/omxplayer.bin --adev hdmi "/media/zeus/download/Family.Guy.S01E02.NoShit.EZ.TV.mp4" < /tmp/etc'
+        # 03:37 /usr/bin/omxplayer.bin --adev hdmi --pos 0 /media/zeus/videos/television/Arrested Development/Arrested Development - [01x02] - Top Banana.avi
         # process_ids is a multiline list of pids
         pids = `pgrep "[o]mxplayer.bin"`
         # pgrep is much faster than ps, and sed removes the top line
